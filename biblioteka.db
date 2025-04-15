@@ -151,3 +151,122 @@ VALUES ('Niedostepna','books',1),
 
 
 SELECT * FROM dbo.status 
+
+
+------------------------
+-- Tabela: country
+INSERT INTO country (country, country_short) VALUES
+('Słowacja', 'SK'),
+('Węgry', 'HU'),
+('Norwegia', 'NO'),
+('Francja', 'FR'),
+('Portugalia', 'PT'),
+('Grecja', 'GR');
+('Szwecja', 'SE'),
+('Ukraina', 'UA'),
+('Austria', 'AT'),
+('Holandia', 'NL'),
+
+-- Tabela: authors
+INSERT INTO authors (first_name, last_name, birth_date, country_id, biography) VALUES
+('Elias', 'Nordgren', '1975-04-12', 3, 'Autor skandynawskich thrillerów'),
+('Lucía', 'Silva', '1983-07-08', 2, 'Pisarka portugalskich powieści obyczajowych'),
+('Yulia', 'Ivanenko', '1990-11-23', 5, 'Młoda ukraińska poetka'),
+('Gunnar', 'Larsen', '1968-03-19', 4, 'Szwedzki eseista i podróżnik'),
+('Anna', 'Kovács', '1979-09-10', 7, 'Węgierska autorka powieści historycznych'),
+('Marek', 'Fischer', '1981-02-14', 8, 'Austriacki pisarz science-fiction'),
+('Sofie', 'Janssen', '1992-06-03', 9, 'Holenderska autorka literatury młodzieżowej'),
+('Nikos', 'Papadopoulos', '1973-10-25', 10, 'Grecki poeta i tłumacz'),
+('Peter', 'Skov', '1985-12-05', 3, 'Norweski pisarz fantasy'),
+('Beata', 'Horváth', '1965-03-15', 7, 'Węgierska eseistka');
+
+-- Tabela: books
+INSERT INTO books (title, isbn, publication_year, publisher, genre, status_id) VALUES
+('Cień nad fiordem', '9780000000001', 2010, 'SkandBooks', 'Thriller', 1),
+('Lisboa w deszczu', '9780000000002', 2015, 'PortoEdit', 'Romans', 1),
+('Echo z Donbasu', '9780000000003', 2018, 'UkrLit', 'Poezja', 1),
+('Na krańcu lodu', '9780000000004', 2012, 'SzweLit', 'Esej', 1),
+('Korona Arpada', '9780000000005', 2007, 'BudapestPress', 'Historyczna', 1),
+('Miasto pod ziemią', '9780000000006', 2019, 'ViennaHouse', 'Science-fiction', 1),
+('Zielone światło', '9780000000007', 2020, 'AmsterdamBooks', 'Młodzieżowa', 1),
+('Mitologia Egejska', '9780000000008', 2001, 'AthensPress', 'Esej', 1),
+('Brama cieni', '9780000000009', 2021, 'NordFantasy', 'Fantasy', 1),
+('Ślady myśli', '9780000000010', 2005, 'BudapestEssay', 'Esej', 1);
+
+-- Tabela: authorsBooks
+INSERT INTO authorsBooks (author_id, book_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
+
+-- Tabela: user
+INSERT INTO [user] (username, password_hash, email, role, status_id) VALUES
+('admin_new', 'hash_admin', 'admin@library.com', 'admin', 3),
+('librarian_new', 'hash_lib', 'librarian@library.com', 'librarian', 3),
+('user_alpha', 'hash_alpha', 'alpha@library.com', 'user', 3),
+('user_beta', 'hash_beta', 'beta@library.com', 'user', 3),
+('user_gamma', 'hash_gamma', 'gamma@library.com', 'user', 3),
+('user_delta', 'hash_delta', 'delta@library.com', 'user', 3),
+('user_epsilon', 'hash_epsilon', 'epsilon@library.com', 'user', 3),
+('user_zeta', 'hash_zeta', 'zeta@library.com', 'user', 3),
+('user_eta', 'hash_eta', 'eta@library.com', 'user', 3),
+('user_theta', 'hash_theta', 'theta@library.com', 'user', 3);
+
+-- Tabela: readers
+INSERT INTO readers (user_id, first_name, last_name, address, phone, status_id) VALUES
+(3, 'Daniel', 'Nowak', 'ul. Długa 10', '600100200', 3),
+(4, 'Katarzyna', 'Wójcik', 'ul. Krótka 5', '600200300', 3),
+(5, 'Piotr', 'Kowal', 'ul. Leśna 7', '600300400', 3),
+(6, 'Anna', 'Kamińska', 'ul. Parkowa 2', '600400500', 3),
+(7, 'Tomasz', 'Zając', 'ul. Polna 9', '600500600', 3),
+(8, 'Monika', 'Grabowska', 'ul. Sosnowa 4', '600600700', 3),
+(9, 'Krzysztof', 'Lis', 'ul. Brzozowa 6', '600700800', 3),
+(10, 'Paweł', 'Duda', 'ul. Akacjowa 8', '600800900', 3),
+(11, 'Zofia', 'Michalska', 'ul. Klonowa 11', '600900100', 3),
+(12, 'Natalia', 'Baran', 'ul. Jesionowa 12', '601001001', 3);
+
+-- Tabela: borrowing
+INSERT INTO borrowing (book_id, readers_id, due, status_id) VALUES
+(1, 1, 14, 1),
+(2, 2, 14, 1),
+(3, 3, 14, 1),
+(4, 4, 14, 1),
+(5, 5, 14, 1),
+(6, 6, 14, 1),
+(7, 7, 14, 1),
+(8, 8, 14, 1),
+(9, 9, 14, 1),
+(10, 10, 14, 1);
+
+-- Tabela: reservation
+INSERT INTO reservation (book_id, readers_id, status_id) VALUES
+(1, 2, 1),
+(2, 3, 1),
+(3, 4, 1),
+(4, 5, 1),
+(5, 6, 1),
+(6, 7, 1),
+(7, 8, 1),
+(8, 9, 1),
+(9, 10, 1),
+(10, 1, 1);
+
+-- Tabela: fine
+INSERT INTO fine (borrowing_id, amount, status_id) VALUES
+(1, 4.50, 1),
+(2, 3.20, 1),
+(3, 2.80, 1),
+(4, 5.00, 1),
+(5, 6.75, 1),
+(6, 3.40, 1),
+(7, 4.90, 1),
+(8, 2.60, 1),
+(9, 3.90, 1),
+(10, 7.10, 1);
